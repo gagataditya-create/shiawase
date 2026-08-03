@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<!-- PERUBAHAN: Menambahkan scroll-smooth agar perpindahan menu halus meluncur -->
 <html lang="id" class="scroll-smooth scroll-pt-24">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LPKS SHIAWASE - Kerangka Web</title>
-    <!-- Tambahan Font dari Google Fonts -->
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,700;1,800&family=Noto+Sans+JP:wght@700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <!-- Animasi Halus (AOS CSS) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- DESAIN / STYLE -->
@@ -17,28 +14,21 @@
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
         .font-jepang { font-family: 'Noto Sans JP', sans-serif; }
         .teks-bayangan { text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); }
-        /* TAMBAHAN: Efek outline dan glow merah tua */
         .teks-glow-merah {
             text-shadow: 
                 -1px -1px 0 #7f1d1d, 1px -1px 0 #7f1d1d, -1px 1px 0 #7f1d1d, 1px 1px 0 #7f1d1d, 
                 0 0 15px rgba(127, 29, 29, 0.9), 0 0 30px rgba(127, 29, 29, 0.6);
         }
-        /* TAMBAHAN: Animasi denyut dan mengambang */
         @keyframes denyut {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
-        .animasi-denyut {
-            animation: denyut 2s infinite ease-in-out;
-        }
+        .animasi-denyut { animation: denyut 2s infinite ease-in-out; }
         @keyframes mengambang {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-8px); }
         }
-        .animasi-mengambang {
-            animation: mengambang 3s infinite ease-in-out;
-        }
-        /* TAMBAHAN: Animasi bendera berkibar */
+        .animasi-mengambang { animation: mengambang 3s infinite ease-in-out; }
         @keyframes kibar {
             0%, 100% { transform: rotate(-3deg) skewY(-2deg); }
             50% { transform: rotate(3deg) skewY(2deg); }
@@ -47,236 +37,289 @@
             animation: kibar 2.5s infinite ease-in-out;
             transform-origin: bottom left;
         }
+        /* Menyembunyikan scrollbar untuk slider berita */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 
-    <!-- Tailwind CSS untuk Styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // PENGATURAN WARNA UTAMA
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        shiawase: {
-                            DEFAULT: '#E62129', 
-                            dark: '#003366',    
-                            light: '#F87171',   
-                        }
+                        shiawase: { DEFAULT: '#E62129', dark: '#003366', light: '#F87171' }
                     }
                 }
             }
         }
     </script>
-    <!-- Font Awesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="font-sans text-gray-800 bg-gray-50">
 
     <!-- NAVBAR / HEADER -->
-    <!-- PERUBAHAN: Menghapus perintah yang bertabrakan agar bar mengapung permanen di atas -->
     <header class="bg-gradient-to-r from-shiawase via-red-400 to-white shadow-md fixed w-full top-0 z-50 border-b-8 border-shiawase-dark">
-        <!-- Garis Merah di atas Biru Tua -->
         <div class="absolute bottom-0 left-0 w-full h-1 bg-shiawase"></div>
-
         <div class="container mx-auto px-4 py-3 flex justify-between items-center relative z-10">
             <!-- Logo & Teks -->
-            <!-- PERUBAHAN: Menyesuaikan ukuran teks logo untuk layar HP (text-xl dan text-xs) -->
             <div class="flex items-center gap-2 md:gap-3 text-white teks-bayangan" data-aos="fade-right" data-aos-duration="800">
                 <img src="logo-shiawase.png" alt="Logo Shiawase" class="h-10 w-10 md:h-12 md:w-12 object-cover rounded-full bg-white p-1 shadow">
                 <div class="flex flex-col">
-                    <!-- PERUBAHAN FONT: Menambahkan font-['Montserrat'] agar bentuknya tegas seperti di kartu -->
                     <span class="font-['Montserrat'] text-xl md:text-2xl font-extrabold italic tracking-wider leading-tight">LPKS SHIAWASE</span>
                     <span class="font-jepang text-xs md:text-sm font-bold">より良い生活のために</span>
                 </div>
-                
-                <!-- TAMBAHAN: Bendera Jepang dan Indonesia animasi kibar -->
                 <div class="hidden lg:flex items-center gap-3 ml-4 md:ml-8">
                     <img src="https://flagcdn.com/w40/jp.png" alt="Bendera Jepang" class="h-5 w-auto rounded-sm shadow-md animasi-kibar">
                     <img src="https://flagcdn.com/w40/id.png" alt="Bendera Indonesia" class="h-5 w-auto rounded-sm shadow-md animasi-kibar" style="animation-delay: 1.2s;">
                 </div>
             </div>
 
-            <!-- Menu Desktop -->
-            <!-- PERUBAHAN: Menambahkan 'border border-white' pada setiap tombol menu -->
+            <!-- Menu Desktop Baru -->
             <nav class="hidden md:flex space-x-3 items-center" data-aos="fade-left" data-aos-duration="800">
-                <a href="#home" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Home</a>
-                <a href="#tentang" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Tentang Kami</a>
-                
-                <!-- Dropdown Program -->
-                <div class="relative group">
-                    <button class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow flex items-center gap-1 transition border border-white">
-                        Program <i class="fas fa-chevron-down text-xs"></i>
-                    </button>
-                    <div class="absolute hidden group-hover:block bg-white text-gray-800 shadow-lg py-2 mt-2 w-56 rounded border border-gray-100">
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-shiawase text-sm">Pelatihan Bahasa Jepang</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-shiawase text-sm">Pemagangan IM Japan</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-shiawase text-sm">Sending Organization (SO)</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-shiawase text-sm">Tokutei Ginou (SSW)</a>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 hover:text-shiawase text-sm">Study In Japan</a>
-                    </div>
-                </div>
-
+                <a href="#beranda" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Beranda</a>
+                <a href="#program" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Program</a>
+                <a href="#informasi" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Informasi</a>
                 <a href="#galeri" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Galeri</a>
                 <a href="#berita" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Berita</a>
-                <a href="#kontak" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Kontak</a>
-                <a href="#pendaftaran" class="bg-white text-shiawase px-5 py-2 rounded-md font-bold hover:bg-gray-100 transition shadow border-2 border-shiawase-dark">Pendaftaran</a>
             </nav>
 
-            <!-- Tombol Menu Mobile -->
-            <button id="mobileMenuBtn" class="md:hidden text-3xl text-shiawase-dark drop-shadow-md">
-                <i class="fas fa-bars"></i>
-            </button>
+            <button id="mobileMenuBtn" class="md:hidden text-3xl text-shiawase-dark drop-shadow-md"><i class="fas fa-bars"></i></button>
         </div>
 
-        <!-- Menu Mobile -->
+        <!-- Menu Mobile Baru -->
         <div id="mobileMenu" class="hidden md:hidden bg-shiawase border-t border-red-500">
-            <a href="#home" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600">Home</a>
-            <a href="#tentang" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600">Tentang Kami</a>
-            <div class="px-4 py-3 border-b border-red-500">
-                <span class="font-bold text-gray-200">Program:</span>
-                <a href="#" class="block pl-4 py-2 text-sm hover:text-white">↳ Pelatihan Bahasa Jepang</a>
-                <a href="#" class="block pl-4 py-2 text-sm hover:text-white">↳ Pemagangan IM Japan</a>
-                <a href="#" class="block pl-4 py-2 text-sm hover:text-white">↳ Tokutei Ginou (SSW)</a>
-            </div>
-            <a href="#galeri" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600">Galeri</a>
-            <a href="#pendaftaran" class="block px-4 py-3 bg-white text-shiawase font-bold text-center m-2 rounded">Pendaftaran</a>
+            <a href="#beranda" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600 text-white font-medium">Beranda</a>
+            <a href="#program" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600 text-white font-medium">Program</a>
+            <a href="#informasi" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600 text-white font-medium">Informasi</a>
+            <a href="#galeri" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600 text-white font-medium">Galeri</a>
+            <a href="#berita" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600 text-white font-medium">Berita</a>
         </div>
     </header>
 
-    <!-- HERO SECTION (Slide 1) -->
-    <!-- PERUBAHAN: bg-black diubah menjadi bg-white -->
-    <section id="home" class="relative h-screen flex items-center justify-center pt-24 bg-white">
-        <!-- Gambar Background untuk HP -->
-        <img src="background-hero-hp.jpg" alt="Hero Background HP" class="absolute inset-0 w-full h-full object-cover z-0 block md:hidden" data-aos="fade" data-aos-duration="1500">
-        <!-- Gambar Background untuk Laptop -->
-        <img src="background-hero.jpg" alt="Hero Background Laptop" class="absolute inset-0 w-full h-full object-cover z-0 hidden md:block" data-aos="fade" data-aos-duration="1500">
-        <!-- KACA DIBUAT BENING (bg-transparent) -->
-        <div class="absolute inset-0 bg-transparent z-10"></div> 
-        <!-- PERUBAHAN: to-black diubah menjadi to-white -->
-        <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-white z-10"></div>
-        
-        <div class="relative z-20 text-center text-white px-4" data-aos="fade-up" data-aos-duration="1200">
-            <!-- PERUBAHAN: teks-bayangan diganti menjadi teks-glow-merah, penambahan huruf S pada LPK -->
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 teks-glow-merah">LPKS SHIAWASE KEBUMEN</h1>
-            <p class="text-lg md:text-2xl mb-8 teks-glow-merah">Lembaga Pelatihan Kerja dan Persiapan Magang Resmi ke Jepang.</p>
-            <!-- PERUBAHAN: Ditambahkan class 'animasi-denyut' -->
-            <a href="#pendaftaran" class="bg-shiawase hover:bg-shiawase-dark text-white px-8 py-4 rounded-full font-bold text-lg inline-block transition shadow-lg hover:scale-105 duration-300 animasi-denyut">
-                Daftar Sekarang
-            </a>
-        </div>
-    </section>
-
-    <!-- TENTANG KAMI (Slide 2) -->
-    <!-- PERUBAHAN: bg-black diubah menjadi bg-white -->
-    <section id="tentang" class="relative min-h-screen flex items-center py-16 bg-white">
-        <!-- Gambar Background untuk HP -->
-        <img src="foto-gedung-hp.jpg" alt="Background Tentang HP" class="absolute inset-0 w-full h-full object-cover z-0 block md:hidden" data-aos="fade" data-aos-duration="1500">
-        <!-- Gambar Background Penuh untuk Laptop -->
-        <img src="foto-gedung.jpg" alt="Background Tentang Laptop" class="absolute inset-0 w-full h-full object-cover z-0 hidden md:block" data-aos="fade" data-aos-duration="1500">
-        <!-- KACA DIBUAT BENING (bg-transparent) -->
-        <div class="absolute inset-0 bg-transparent z-10"></div>
-        <!-- PERUBAHAN: from-black dan to-black diubah menjadi putih -->
-        <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent z-10"></div>
-        <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-white z-10"></div>
-
-        <!-- Teks difokuskan ke sisi KANAN -->
-        <div class="container mx-auto px-4 relative z-20 flex justify-end">
-            <!-- WARNA DIUBAH: text-black, PERUBAHAN HP: Ditambahkan efek kaca embun khusus HP (bg-white/70 backdrop-blur-md) agar terbaca -->
-            <div class="w-full md:w-1/2 text-black bg-white/70 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-6 md:p-0 rounded-2xl" data-aos="fade-left" data-aos-duration="1200">
-                <h2 class="text-4xl font-bold border-b-4 border-shiawase inline-block pb-2 mb-6">Tentang Kami</h2>
-                <h3 class="text-3xl font-bold mb-4">Profil LPKS SHIAWASE</h3>
-                <p class="mb-4 text-justify text-lg leading-relaxed">
-                    LPKS SHIAWASE berdiri pada 14 Agustus 2018. Kami bergerak di bidang pendidikan dan pelatihan dengan tujuan menjadi jalan kesuksesan masyarakat untuk memperoleh lapangan pekerjaan baru dan meminimalisir pengangguran di wilayah Jawa Tengah, khususnya Kebumen.
-                </p>
-                <ul class="space-y-3 font-medium text-lg">
-                    <li class="flex items-center" data-aos="fade-left" data-aos-delay="200"><i class="fas fa-check-circle text-shiawase bg-white rounded-full mr-3 text-xl shadow"></i> Memiliki Instruktur/Guru yang Kompeten</li>
-                    <li class="flex items-center" data-aos="fade-left" data-aos-delay="400"><i class="fas fa-check-circle text-shiawase bg-white rounded-full mr-3 text-xl shadow"></i> Lingkungan Belajar yang Bersih dan Nyaman</li>
-                    <li class="flex items-center" data-aos="fade-left" data-aos-delay="600"><i class="fas fa-check-circle text-shiawase bg-white rounded-full mr-3 text-xl shadow"></i> Bertanggung Jawab Hingga Pemberangkatan ke Jepang</li>
-                </ul>
+    <div id="beranda">
+        <!-- 1A. Hero Banner -->
+        <section class="relative h-screen flex items-center justify-center pt-24 bg-white">
+            <img src="background-hero-hp.jpg" alt="Hero Background HP" class="absolute inset-0 w-full h-full object-cover z-0 block md:hidden" data-aos="fade" data-aos-duration="1500">
+            <img src="background-hero.jpg" alt="Hero Background Laptop" class="absolute inset-0 w-full h-full object-cover z-0 hidden md:block" data-aos="fade" data-aos-duration="1500">
+            <div class="absolute inset-0 bg-transparent z-10"></div> 
+            <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-white z-10"></div>
+            
+            <div class="relative z-20 text-center text-white px-4" data-aos="fade-up" data-aos-duration="1200">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 teks-glow-merah">LPKS SHIAWASE KEBUMEN</h1>
+                <p class="text-lg md:text-2xl mb-8 teks-glow-merah">Lembaga Pelatihan Kerja dan Persiapan Magang Resmi ke Jepang.</p>
+                <a href="#informasi" class="bg-shiawase hover:bg-shiawase-dark text-white px-8 py-4 rounded-full font-bold text-lg inline-block transition shadow-lg hover:scale-105 duration-300 animasi-denyut">
+                    Lihat Persyaratan
+                </a>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PROGRAM SECTION (Slide 3) -->
-    <!-- PERUBAHAN: bg-black diubah menjadi bg-white -->
+        <!-- 1B. Visi - Misi -->
+        <section class="py-16 bg-white relative z-20">
+            <div class="container mx-auto px-4" data-aos="fade-up">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2">Visi & Misi</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-md border-t-4 border-shiawase transform hover:-translate-y-2 transition duration-300">
+                        <h3 class="text-2xl font-bold mb-4 text-center text-shiawase-dark"><i class="fas fa-eye text-shiawase mr-2"></i>Visi</h3>
+                        <p class="text-gray-700 text-justify leading-relaxed">Menjadi lembaga pelatihan kerja dan pengiriman pemagangan yang profesional, terpercaya, dan mencetak sumber daya manusia (SDM) yang unggul, disiplin, serta kompeten untuk bersaing di dunia kerja internasional, khususnya Jepang.</p>
+                    </div>
+                    <div class="bg-gray-50 p-8 rounded-2xl shadow-md border-t-4 border-shiawase transform hover:-translate-y-2 transition duration-300">
+                        <h3 class="text-2xl font-bold mb-4 text-center text-shiawase-dark"><i class="fas fa-bullseye text-shiawase mr-2"></i>Misi</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Memberikan pelatihan bahasa dan budaya Jepang secara intensif dan berkualitas.</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Membentuk karakter siswa yang disiplin, beretos kerja tinggi, dan mandiri.</li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i> Menjalin kerja sama yang baik dengan pihak penyalur dan penerima di Jepang.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1C. Perizinan -->
+        <section class="py-12 bg-gray-100 relative z-20">
+            <div class="container mx-auto px-4 text-center" data-aos="zoom-in">
+                <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2 mb-8">Legalitas & Perizinan</h2>
+                <div class="flex flex-wrap justify-center gap-6 items-center">
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-lg transition">
+                        <i class="fas fa-file-signature text-4xl text-shiawase-dark mb-3"></i>
+                        <p class="font-bold text-sm text-gray-800">Izin Kemenaker RI</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-lg transition">
+                        <i class="fas fa-stamp text-4xl text-shiawase-dark mb-3"></i>
+                        <p class="font-bold text-sm text-gray-800">Akreditasi LPK</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow border border-gray-200 hover:shadow-lg transition">
+                        <i class="fas fa-building text-4xl text-shiawase-dark mb-3"></i>
+                        <p class="font-bold text-sm text-gray-800">Izin Disnaker Setempat</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1D. Tentang Shiawase -->
+        <section class="relative min-h-screen flex items-center py-16 bg-white">
+            <img src="foto-gedung-hp.jpg" alt="Background Tentang HP" class="absolute inset-0 w-full h-full object-cover z-0 block md:hidden" data-aos="fade" data-aos-duration="1500">
+            <img src="foto-gedung.jpg" alt="Background Tentang Laptop" class="absolute inset-0 w-full h-full object-cover z-0 hidden md:block" data-aos="fade" data-aos-duration="1500">
+            <div class="absolute inset-0 bg-transparent z-10"></div>
+            <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent z-10"></div>
+            <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-white z-10"></div>
+
+            <div class="container mx-auto px-4 relative z-20 flex justify-end">
+                <div class="w-full md:w-1/2 text-black bg-white/70 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-6 md:p-0 rounded-2xl" data-aos="fade-left" data-aos-duration="1200">
+                    <h2 class="text-4xl font-bold border-b-4 border-shiawase inline-block pb-2 mb-6">Tentang Kami</h2>
+                    <h3 class="text-3xl font-bold mb-4">Profil LPKS SHIAWASE</h3>
+                    <p class="mb-4 text-justify text-lg leading-relaxed">
+                        LPKS SHIAWASE berdiri pada 14 Agustus 2018. Kami bergerak di bidang pendidikan dan pelatihan dengan tujuan menjadi jalan kesuksesan masyarakat untuk memperoleh lapangan pekerjaan baru dan meminimalisir pengangguran di wilayah Jawa Tengah, khususnya Kebumen.
+                    </p>
+                    <ul class="space-y-3 font-medium text-lg">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-shiawase bg-white rounded-full mr-3 text-xl shadow"></i> Memiliki Instruktur/Guru yang Kompeten</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-shiawase bg-white rounded-full mr-3 text-xl shadow"></i> Lingkungan Belajar yang Bersih dan Nyaman</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-shiawase bg-white rounded-full mr-3 text-xl shadow"></i> Bertanggung Jawab Hingga Pemberangkatan ke Jepang</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <section id="program" class="py-16 relative bg-white">
-        <!-- Gambar Background untuk HP -->
         <img src="background-program-hp.jpg" alt="Background Program HP" class="absolute inset-0 w-full h-full object-cover z-0 block md:hidden" data-aos="fade" data-aos-duration="1500">
-        <!-- Gambar Background untuk Laptop -->
         <img src="background-program.jpg" alt="Background Program Laptop" class="absolute inset-0 w-full h-full object-cover z-0 hidden md:block" data-aos="fade" data-aos-duration="1500">
-        <!-- KACA DIBUAT BENING (bg-transparent) -->
         <div class="absolute inset-0 bg-transparent z-10"></div>
-        <!-- PERUBAHAN: from-black dan to-black diubah menjadi putih -->
         <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent z-10"></div>
         <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-white z-10"></div>
 
         <div class="container mx-auto px-4 relative z-20">
             <div class="text-center mb-10" data-aos="fade-up">
                 <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2">Program Kami</h2>
-                <p class="mt-4 text-gray-800 font-bold teks-bayangan text-white">Pilihan program pelatihan dan penempatan kerja ke Jepang.</p>
+                <p class="mt-4 text-gray-800 font-bold teks-bayangan text-white">3 Jalur Utama Pilihan Masa Depan di Jepang.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Card Program 1 -->
-                <!-- PERUBAHAN: Ditambahkan animasi-mengambang dengan delay 0s -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Program 1 -->
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden border-t-4 border-shiawase transform transition hover:-translate-y-2 hover:shadow-2xl duration-300 animasi-mengambang" style="animation-delay: 0s;" data-aos="zoom-in" data-aos-delay="100">
-                    <img src="program-imjapan.jpg" alt="Program 1" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold mb-2">IM Japan (Program Negeri)</h3>
-                        <p class="text-gray-600 text-sm mb-4">Satu-satunya program pemagangan ke Jepang yang disupport langsung oleh Kemnaker RI.</p>
-                        <a href="#" class="text-shiawase font-bold hover:underline">Baca Selengkapnya <i class="fas fa-arrow-right text-sm"></i></a>
+                    <img src="program-imjapan.jpg" alt="Program Magang" class="w-full h-48 object-cover">
+                    <div class="p-5 text-center">
+                        <h3 class="text-xl font-bold mb-2 text-shiawase-dark">MAGANG (SO/IM)</h3>
+                        <p class="text-gray-600 text-sm mb-4">Program magang resmi jalur negeri maupun swasta (Sending Organization).</p>
                     </div>
                 </div>
-
-                <!-- Card Program 2 -->
-                <!-- PERUBAHAN: Ditambahkan animasi-mengambang dengan delay 1s -->
+                <!-- Program 2 -->
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden border-t-4 border-shiawase transform transition hover:-translate-y-2 hover:shadow-2xl duration-300 animasi-mengambang" style="animation-delay: 1s;" data-aos="zoom-in" data-aos-delay="300">
-                    <img src="program-swasta.jpg" alt="Program 2" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold mb-2">SO / Swasta (Pemagangan)</h3>
-                        <p class="text-gray-600 text-sm mb-4">Program pemagangan yang dikelola mandiri oleh swasta dengan ijin resmi pengiriman dari Kemnaker RI.</p>
-                        <a href="#" class="text-shiawase font-bold hover:underline">Baca Selengkapnya <i class="fas fa-arrow-right text-sm"></i></a>
+                    <img src="program-tokuteiginou.jpg" alt="Program Tokutei Ginou" class="w-full h-48 object-cover">
+                    <div class="p-5 text-center">
+                        <h3 class="text-xl font-bold mb-2 text-shiawase-dark">VISA KERJA (TOKUTEI GINOU)</h3>
+                        <p class="text-gray-600 text-sm mb-4">Program kerja bagi yang memiliki sertifikat keterampilan khusus.</p>
                     </div>
                 </div>
-
-                <!-- Card Program 3 -->
-                <!-- PERUBAHAN: Ditambahkan animasi-mengambang dengan delay 2s -->
+                <!-- Program 3 -->
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden border-t-4 border-shiawase transform transition hover:-translate-y-2 hover:shadow-2xl duration-300 animasi-mengambang" style="animation-delay: 2s;" data-aos="zoom-in" data-aos-delay="500">
-                    <img src="program-tokuteiginou.jpg" alt="Program 3" class="w-full h-48 object-cover">
-                    <div class="p-5">
-                        <h3 class="text-xl font-bold mb-2">Tokutei Ginou (SSW)</h3>
-                        <p class="text-gray-600 text-sm mb-4">Program bekerja semi-profesional bagi yang memiliki sertifikat keterampilan khusus atau alumni magang.</p>
-                        <a href="#" class="text-shiawase font-bold hover:underline">Baca Selengkapnya <i class="fas fa-arrow-right text-sm"></i></a>
+                    <!-- Gunakan placeholder image jika belum ada foto Ryuugakusei -->
+                    <img src="https://placehold.co/800x500/E62129/fff?text=Ryuugakusei" alt="Program Ryuugakusei" class="w-full h-48 object-cover">
+                    <div class="p-5 text-center">
+                        <h3 class="text-xl font-bold mb-2 text-shiawase-dark">KULIAH & KERJA (RYUUGAKUSEI)</h3>
+                        <p class="text-gray-600 text-sm mb-4">Belajar di sekolah bahasa di Jepang sambil part-time.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- GALERI (Slide 4) -->
-    <!-- PERUBAHAN: bg-black diubah menjadi bg-white -->
+    <section id="informasi" class="py-16 bg-gray-50 relative z-20">
+        <div class="container mx-auto px-4" data-aos="fade-up">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2">Informasi & Persyaratan</h2>
+            </div>
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                <div class="p-6 md:p-10 border-l-8 border-shiawase">
+                    <h3 class="text-2xl font-bold mb-6 border-b pb-2"><i class="fas fa-list-check text-shiawase mr-2"></i>Persyaratan Umum</h3>
+                    <ul class="space-y-4 text-gray-700 text-lg">
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg"><i class="fas fa-check text-green-600 mt-1 mr-4 text-xl"></i> Pria / Wanita, usia 18 hingga 28 Tahun.</li>
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg"><i class="fas fa-check text-green-600 mt-1 mr-4 text-xl"></i> Pendidikan minimal lulusan SMA / SMK / Sederajat.</li>
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg"><i class="fas fa-check text-green-600 mt-1 mr-4 text-xl"></i> Tinggi minimal: Laki-laki 160 cm, Perempuan 150 cm.</li>
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg"><i class="fas fa-check text-green-600 mt-1 mr-4 text-xl"></i> Lulus Medical Check-Up.</li>
+                        <li class="flex items-start bg-gray-50 p-3 rounded-lg"><i class="fas fa-check text-green-600 mt-1 mr-4 text-xl"></i> Tidak bertato, tidak bertindik (bagi pria).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="galeri" class="py-16 relative bg-white">
-        <!-- Gambar Background untuk HP -->
         <img src="background-galeri-hp.jpg" alt="Background Galeri HP" class="absolute inset-0 w-full h-full object-cover z-0 block md:hidden" data-aos="fade" data-aos-duration="1500">
-        <!-- Gambar Background untuk Laptop -->
         <img src="background-galeri.jpg" alt="Background Galeri Laptop" class="absolute inset-0 w-full h-full object-cover z-0 hidden md:block" data-aos="fade" data-aos-duration="1500">
-        <!-- KACA DIBUAT BENING (bg-transparent) -->
         <div class="absolute inset-0 bg-transparent z-10"></div>
-        <!-- PERUBAHAN: Gradasi atas dipertahankan, gradasi bawah dihapus -->
         <div class="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-white to-transparent z-10"></div>
 
         <div class="container mx-auto px-4 relative z-20">
-            <div class="text-center mb-10" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2">Galeri Kegiatan</h2>
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2">Galeri Album</h2>
             </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <img src="galeri1.jpg" alt="Galeri" class="rounded shadow-lg hover:scale-105 transition duration-300 w-full h-48 object-cover" data-aos="flip-left" data-aos-delay="100">
-                <img src="galeri2.jpg" alt="Galeri" class="rounded shadow-lg hover:scale-105 transition duration-300 w-full h-48 object-cover" data-aos="flip-left" data-aos-delay="200">
-                <img src="galeri3.jpg" alt="Galeri" class="rounded shadow-lg hover:scale-105 transition duration-300 w-full h-48 object-cover" data-aos="flip-left" data-aos-delay="300">
-                <img src="galeri4.jpg" alt="Galeri" class="rounded shadow-lg hover:scale-105 transition duration-300 w-full h-48 object-cover" data-aos="flip-left" data-aos-delay="400">
+            <!-- Grid Folder -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
+                <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center cursor-pointer border-t-4 border-shiawase group" data-aos="zoom-in">
+                    <i class="fas fa-folder text-6xl text-yellow-400 group-hover:text-shiawase transition mb-4"></i>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">Pembelajaran Kelas</h4>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center cursor-pointer border-t-4 border-shiawase group" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-folder text-6xl text-yellow-400 group-hover:text-shiawase transition mb-4"></i>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">Kegiatan</h4>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center cursor-pointer border-t-4 border-shiawase group" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-folder text-6xl text-yellow-400 group-hover:text-shiawase transition mb-4"></i>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">Foto Seleksi</h4>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center cursor-pointer border-t-4 border-shiawase group" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-folder text-6xl text-yellow-400 group-hover:text-shiawase transition mb-4"></i>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">Pemberangkatan</h4>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center cursor-pointer border-t-4 border-shiawase group" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-folder text-6xl text-yellow-400 group-hover:text-shiawase transition mb-4"></i>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">Penempatan Jepang</h4>
+                </div>
+                <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center cursor-pointer border-t-4 border-shiawase group" data-aos="zoom-in" data-aos-delay="500">
+                    <i class="fas fa-folder text-6xl text-gray-400 group-hover:text-shiawase transition mb-4"></i>
+                    <h4 class="font-bold text-gray-800 text-sm md:text-base">Lain-lain</h4>
+                </div>
             </div>
-            <div class="text-center mt-8" data-aos="fade-up" data-aos-delay="500">
-                <a href="#" class="bg-gray-800 text-white px-6 py-3 rounded hover:bg-black transition shadow-lg font-bold">Lihat Semua Galeri</a>
+        </div>
+    </section>
+
+    <section id="berita" class="py-16 bg-white relative z-20">
+        <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-shiawase-dark z-10 pointer-events-none"></div>
+        <div class="container mx-auto px-4" data-aos="fade-up">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2">Berita & Pengumuman</h2>
+                <p class="mt-4 text-gray-600">Geser ke kanan untuk melihat berita terbaru.</p>
+            </div>
+            
+            <!-- Tempat Geser (Slider) -->
+            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 hide-scroll cursor-grab relative z-20">
+                <div class="snap-center shrink-0 w-80 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition overflow-hidden border-b-4 border-shiawase">
+                    <img src="https://placehold.co/400x250/E62129/fff?text=Berita+1" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <span class="text-xs font-bold text-red-500 mb-2 block">Hari ini</span>
+                        <h3 class="font-bold text-lg mb-2">Pelepasan Siswa Batch 15</h3>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-3">Acara pelepasan siswa yang telah lulus dan siap diberangkatkan.</p>
+                        <a href="#" class="text-shiawase font-bold text-sm hover:underline">Baca Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+                <div class="snap-center shrink-0 w-80 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition overflow-hidden border-b-4 border-shiawase">
+                    <img src="https://placehold.co/400x250/003366/fff?text=Berita+2" class="w-full h-48 object-cover">
+                    <div class="p-5">
+                        <span class="text-xs font-bold text-red-500 mb-2 block">Kemarin</span>
+                        <h3 class="font-bold text-lg mb-2">Kunjungan Perusahaan Jepang</h3>
+                        <p class="text-sm text-gray-600 mb-4 line-clamp-3">Perwakilan dari perusahaan otomotif Jepang datang ke LPK.</p>
+                        <a href="#" class="text-shiawase font-bold text-sm hover:underline">Baca Selengkapnya &rarr;</a>
+                    </div>
+                </div>
+                <div class="snap-center shrink-0 w-80 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition overflow-hidden border-b-4 border-shiawase flex flex-col items-center justify-center text-center p-8">
+                    <i class="fas fa-newspaper text-6xl text-gray-300 mb-4"></i>
+                    <h3 class="font-bold text-xl mb-2 text-gray-800">Lihat Semua</h3>
+                    <p class="text-sm text-gray-500 mb-6">Jelajahi seluruh arsip berita dan kegiatan kami.</p>
+                    <a href="#" class="bg-gray-800 text-white px-6 py-2 rounded-full font-bold text-sm hover:bg-black transition">Buka Arsip</a>
+                </div>
             </div>
         </div>
     </section>
@@ -284,49 +327,31 @@
     <!-- FOOTER / KONTAK -->
     <footer id="kontak" class="bg-shiawase-dark text-white pt-12 pb-6 border-t-8 border-shiawase relative z-20">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <!-- Info -->
             <div data-aos="fade-up" data-aos-delay="100">
                 <h4 class="text-xl font-bold mb-4 text-white">LPKS SHIAWASE</h4>
                 <p class="text-gray-300 text-sm mb-4 font-jepang">より良い生活のために</p>
-                <p class="text-gray-300 text-sm mb-4">Lembaga Pelatihan Kerja ke Jepang terpercaya untuk masa depan yang lebih baik.</p>
                 <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110"><i class="fab fa-facebook fa-lg"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110"><i class="fab fa-instagram fa-lg"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition transform hover:scale-110"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube fa-lg"></i></a>
                 </div>
             </div>
-            
-            <!-- Link Cepat -->
             <div data-aos="fade-up" data-aos-delay="300">
                 <h4 class="text-xl font-bold mb-4 text-white">Tautan Cepat</h4>
                 <ul class="space-y-2 text-gray-300 text-sm">
-                    <li><a href="#home" class="hover:text-white transition">Home</a></li>
-                    <li><a href="#tentang" class="hover:text-white transition">Tentang Kami</a></li>
-                    <li><a href="#program" class="hover:text-white transition">Program Kami</a></li>
-                    <li><a href="#pendaftaran" class="hover:text-white transition">Pendaftaran</a></li>
+                    <li><a href="#beranda" class="hover:text-white transition">Beranda</a></li>
+                    <li><a href="#program" class="hover:text-white transition">Program</a></li>
+                    <li><a href="#informasi" class="hover:text-white transition">Informasi</a></li>
                 </ul>
             </div>
-
-            <!-- Kontak -->
             <div data-aos="fade-up" data-aos-delay="500">
                 <h4 class="text-xl font-bold mb-4 text-white">Kontak Kami</h4>
                 <ul class="space-y-3 text-gray-300 text-sm">
-                    <li class="flex items-start gap-3">
-                        <i class="fas fa-map-marker-alt mt-1 text-shiawase"></i>
-                        <span>Desa Srati RT02/01, Kecamatan Ayah, Kabupaten Kebumen, Jawa Tengah 54473</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-phone-alt text-shiawase"></i>
-                        <span>0831-5492-4576 (WhatsApp)</span>
-                    </li>
-                    <li class="flex items-center gap-3">
-                        <i class="fas fa-envelope text-shiawase"></i>
-                        <span>[Alamat Email Kosong] / www.lpkshiawase.com</span>
-                    </li>
+                    <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt mt-1 text-shiawase"></i><span>Desa Srati RT02/01, Ayah, Kebumen, Jawa Tengah</span></li>
+                    <li class="flex items-center gap-3"><i class="fas fa-phone-alt text-shiawase"></i><span>0831-5492-4576 (WhatsApp)</span></li>
                 </ul>
             </div>
         </div>
-        
         <div class="border-t border-gray-600 pt-6 text-center text-gray-400 text-sm">
             <p>&copy; 2026 LPKS SHIAWASE. All Rights Reserved.</p>
         </div>
@@ -335,23 +360,12 @@
     <!-- INTERAKSI / MESIN -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Mengaktifkan Menu HP
         const btn = document.getElementById('mobileMenuBtn');
         const menu = document.getElementById('mobileMenu');
+        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+        AOS.init({ once: false, offset: 100 });
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // Mengaktifkan Animasi Scroll (AOS)
-        AOS.init({
-            once: false, 
-            offset: 100, 
-        });
-
-        // ==========================================
-        // MESIN PEMUTAR MUSIK OTOMATIS (BGM)
-        // ==========================================
+        // MESIN PEMUTAR MUSIK OTOMATIS
         const lagu1 = "Shiawase no Kakehashi (Jembatan Kebahagiaan).mp3";
         const lagu2 = "Shiawase no Kakehashi.mp3";
         const pemutarMusik = new Audio();
@@ -360,32 +374,21 @@
         function jalankanSkenarioMusik() {
             if (musikSudahMulai) return;
             musikSudahMulai = true;
-
-            // 1. Tunggu 10 detik pertama
             setTimeout(() => {
-                pemutarMusik.src = lagu2; // Putar lagu kedua dulu
-                pemutarMusik.play().catch(e => console.log("Menunggu pengunjung nge-klik web..."));
-
-                // 2. Saat lagu kedua selesai
+                pemutarMusik.src = lagu2;
+                pemutarMusik.play().catch(e => console.log("Menunggu pengunjung interaksi..."));
                 pemutarMusik.onended = () => {
-                    // 3. Tunggu 10 detik lagi
                     setTimeout(() => {
-                        pemutarMusik.src = lagu1; // Putar lagu pertama
-                        pemutarMusik.play().catch(e => console.log("Menunggu pengunjung nge-klik web..."));
-                    }, 10000); // 10.000 milidetik = 10 detik
+                        pemutarMusik.src = lagu1;
+                        pemutarMusik.play().catch(e => console.log("Menunggu pengunjung interaksi..."));
+                    }, 10000); 
                 };
-            }, 10000); // 10.000 milidetik = 10 detik
+            }, 10000); 
         }
 
-        // Mulai hitung mundur 10 detik saat web selesai dimuat
         window.addEventListener('load', jalankanSkenarioMusik);
-
-        // Saklar Cadangan: Jika browser memblokir lagu karena pengunjung belum nge-klik, 
-        // lagu akan dipaksa nyala saat mereka akhirnya nge-klik di mana saja.
         document.body.addEventListener('click', () => {
-            if (pemutarMusik.paused && pemutarMusik.src) {
-                pemutarMusik.play();
-            }
+            if (pemutarMusik.paused && pemutarMusik.src) { pemutarMusik.play(); }
         });
     </script>
 </body>
