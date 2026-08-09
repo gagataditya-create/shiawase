@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LPKS SHIAWASE - Kerangka Web</title>
     <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,700;1,800&family=Noto+Sans+JP:wght@700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,800;1,700;1,800&family=Noto+Sans+JP:wght@700;900&family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- DESAIN / STYLE -->
@@ -59,23 +59,25 @@
 <body class="font-sans text-gray-800 bg-gray-50">
 
     <!-- NAVBAR / HEADER -->
-    <header class="bg-gradient-to-r from-shiawase via-red-400 to-white shadow-md fixed w-full top-0 z-50 border-b-8 border-shiawase-dark">
+    <header class="bg-gradient-to-r from-shiawase via-red-500 to-white shadow-md fixed w-full top-0 z-50 border-b-8 border-shiawase-dark">
         <div class="absolute bottom-0 left-0 w-full h-1 bg-shiawase"></div>
         <div class="container mx-auto px-4 py-3 flex justify-between items-center relative z-10">
             <!-- Logo & Teks -->
             <div class="flex items-center gap-2 md:gap-3 text-white teks-bayangan" data-aos="fade-right" data-aos-duration="800">
                 <img src="logo-shiawase.png" alt="Logo Shiawase" class="h-10 w-10 md:h-12 md:w-12 object-cover rounded-full bg-white p-1 shadow">
                 <div class="flex flex-col">
-                    <span class="font-['Montserrat'] text-xl md:text-2xl font-extrabold italic tracking-wider leading-tight">LPKS SHIAWASE</span>
+                    <span class="font-['Montserrat'] text-xl md:text-2xl font-extrabold italic tracking-wider leading-tight drop-shadow-md">LPKS SHIAWASE</span>
                     <span class="font-jepang text-xs md:text-sm font-bold">より良い生活のために</span>
                 </div>
+                
+                <!-- Bendera Jepang dan Indonesia animasi kibar -->
                 <div class="hidden lg:flex items-center gap-3 ml-4 md:ml-8">
                     <img src="https://flagcdn.com/w40/jp.png" alt="Bendera Jepang" class="h-5 w-auto rounded-sm shadow-md animasi-kibar">
                     <img src="https://flagcdn.com/w40/id.png" alt="Bendera Indonesia" class="h-5 w-auto rounded-sm shadow-md animasi-kibar" style="animation-delay: 1.2s;">
                 </div>
             </div>
 
-            <!-- Menu Desktop Baru -->
+            <!-- Menu Desktop -->
             <nav class="hidden md:flex space-x-3 items-center" data-aos="fade-left" data-aos-duration="800">
                 <a href="#beranda" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Beranda</a>
                 <a href="#program" class="bg-shiawase-dark text-white px-3 py-1.5 rounded-md hover:bg-gray-800 font-medium text-sm shadow transition border border-white">Program</a>
@@ -87,7 +89,7 @@
             <button id="mobileMenuBtn" class="md:hidden text-3xl text-shiawase-dark drop-shadow-md"><i class="fas fa-bars"></i></button>
         </div>
 
-        <!-- Menu Mobile Baru -->
+        <!-- Menu Mobile -->
         <div id="mobileMenu" class="hidden md:hidden bg-shiawase border-t border-red-500">
             <a href="#beranda" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600 text-white font-medium">Beranda</a>
             <a href="#program" class="block px-4 py-3 border-b border-red-500 hover:bg-red-600 text-white font-medium">Program</a>
@@ -99,18 +101,29 @@
 
     <div id="beranda">
         <!-- 1A. Hero Banner -->
-        <section class="relative h-screen flex items-center justify-center pt-24 bg-white">
+        <section class="relative h-screen flex flex-col items-center justify-center pt-24 bg-white">
             <img src="background-hero-hp.jpg" alt="Hero Background HP" class="absolute inset-0 w-full h-full object-cover z-0 block md:hidden" data-aos="fade" data-aos-duration="1500">
             <img src="background-hero.jpg" alt="Hero Background Laptop" class="absolute inset-0 w-full h-full object-cover z-0 hidden md:block" data-aos="fade" data-aos-duration="1500">
             <div class="absolute inset-0 bg-transparent z-10"></div> 
-            <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-white z-10"></div>
             
-            <div class="relative z-20 text-center text-white px-4" data-aos="fade-up" data-aos-duration="1200">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4 teks-glow-merah">LPKS SHIAWASE KEBUMEN</h1>
-                <p class="text-lg md:text-2xl mb-8 teks-glow-merah">Lembaga Pelatihan Kerja dan Persiapan Magang Resmi ke Jepang.</p>
-                <a href="#informasi" class="bg-shiawase hover:bg-shiawase-dark text-white px-8 py-4 rounded-full font-bold text-lg inline-block transition shadow-lg hover:scale-105 duration-300 animasi-denyut">
-                    Lihat Persyaratan
+            <!-- Gradien putih transparan di bawah (membantu teks terbaca jika foto kurang presisi) -->
+            <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-white z-10"></div>
+            
+            <!-- Tombol Tengah -->
+            <div class="relative z-20 text-center px-4" data-aos="zoom-in" data-aos-duration="1200">
+                <!-- PERUBAHAN: Tombol diubah warna biru tua (bg-shiawase-dark), teks Hubungi Kami, dan link langsung ke WhatsApp -->
+                <a href="https://wa.me/6283154924576" target="_blank" rel="noopener noreferrer" class="bg-shiawase-dark hover:bg-blue-900 border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg inline-block transition shadow-lg hover:scale-105 duration-300 animasi-denyut">
+                    <i class="fab fa-whatsapp text-green-400 mr-2 text-xl"></i>Hubungi Kami
                 </a>
+            </div>
+
+            <!-- Teks Pindah ke Bawah (Satu baris, Merah Tua, Bagian Putih Banner) -->
+            <div class="absolute bottom-3 md:bottom-6 left-0 w-full z-30 text-center px-2" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+                <p class="text-red-900 text-[10px] sm:text-xs md:text-sm lg:text-base font-bold tracking-wide drop-shadow-sm whitespace-nowrap overflow-hidden text-ellipsis">
+                    <span class="font-['Montserrat']">LPKS SHIAWASE KEBUMEN</span> 
+                    <span class="mx-1 md:mx-2 text-red-700">|</span> 
+                    <span class="font-sans font-medium text-red-800">Lembaga Pelatihan Kerja dan Persiapan Magang Resmi ke Jepang.</span>
+                </p>
             </div>
         </section>
 
@@ -183,6 +196,7 @@
         </section>
     </div>
 
+    <!-- PROGRAM SECTION -->
     <section id="program" class="py-16 relative bg-white">
         <img src="background-program-hp.jpg" alt="Background Program HP" class="absolute inset-0 w-full h-full object-cover z-0 block md:hidden" data-aos="fade" data-aos-duration="1500">
         <img src="background-program.jpg" alt="Background Program Laptop" class="absolute inset-0 w-full h-full object-cover z-0 hidden md:block" data-aos="fade" data-aos-duration="1500">
@@ -192,12 +206,11 @@
 
         <div class="container mx-auto px-4 relative z-20">
             <div class="text-center mb-10" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2">Program Kami</h2>
-                <p class="mt-4 text-gray-800 font-bold teks-bayangan text-white">3 Jalur Utama Pilihan Masa Depan di Jepang.</p>
+                <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2 bg-white/50 backdrop-blur-sm px-4 rounded-lg">Program Kami</h2>
+                <p class="mt-4 text-gray-900 font-bold bg-white/70 backdrop-blur-md inline-block px-4 py-1 rounded-full shadow">3 Jalur Utama Pilihan Masa Depan di Jepang.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Program 1 -->
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden border-t-4 border-shiawase transform transition hover:-translate-y-2 hover:shadow-2xl duration-300 animasi-mengambang" style="animation-delay: 0s;" data-aos="zoom-in" data-aos-delay="100">
                     <img src="program-imjapan.jpg" alt="Program Magang" class="w-full h-48 object-cover">
                     <div class="p-5 text-center">
@@ -205,7 +218,6 @@
                         <p class="text-gray-600 text-sm mb-4">Program magang resmi jalur negeri maupun swasta (Sending Organization).</p>
                     </div>
                 </div>
-                <!-- Program 2 -->
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden border-t-4 border-shiawase transform transition hover:-translate-y-2 hover:shadow-2xl duration-300 animasi-mengambang" style="animation-delay: 1s;" data-aos="zoom-in" data-aos-delay="300">
                     <img src="program-tokuteiginou.jpg" alt="Program Tokutei Ginou" class="w-full h-48 object-cover">
                     <div class="p-5 text-center">
@@ -213,9 +225,7 @@
                         <p class="text-gray-600 text-sm mb-4">Program kerja bagi yang memiliki sertifikat keterampilan khusus.</p>
                     </div>
                 </div>
-                <!-- Program 3 -->
                 <div class="bg-white rounded-lg shadow-xl overflow-hidden border-t-4 border-shiawase transform transition hover:-translate-y-2 hover:shadow-2xl duration-300 animasi-mengambang" style="animation-delay: 2s;" data-aos="zoom-in" data-aos-delay="500">
-                    <!-- Gunakan placeholder image jika belum ada foto Ryuugakusei -->
                     <img src="https://placehold.co/800x500/E62129/fff?text=Ryuugakusei" alt="Program Ryuugakusei" class="w-full h-48 object-cover">
                     <div class="p-5 text-center">
                         <h3 class="text-xl font-bold mb-2 text-shiawase-dark">KULIAH & KERJA (RYUUGAKUSEI)</h3>
@@ -226,6 +236,7 @@
         </div>
     </section>
 
+    <!-- INFORMASI SECTION -->
     <section id="informasi" class="py-16 bg-gray-50 relative z-20">
         <div class="container mx-auto px-4" data-aos="fade-up">
             <div class="text-center mb-10">
@@ -246,6 +257,7 @@
         </div>
     </section>
 
+    <!-- GALERI SECTION -->
     <section id="galeri" class="py-16 relative bg-white">
         <img src="background-galeri-hp.jpg" alt="Background Galeri HP" class="absolute inset-0 w-full h-full object-cover z-0 block md:hidden" data-aos="fade" data-aos-duration="1500">
         <img src="background-galeri.jpg" alt="Background Galeri Laptop" class="absolute inset-0 w-full h-full object-cover z-0 hidden md:block" data-aos="fade" data-aos-duration="1500">
@@ -254,9 +266,9 @@
 
         <div class="container mx-auto px-4 relative z-20">
             <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2">Galeri Album</h2>
+                <h2 class="text-3xl font-bold text-shiawase border-b-2 border-shiawase inline-block pb-2 bg-white/50 backdrop-blur-sm px-4 rounded-lg">Galeri Album</h2>
             </div>
-            <!-- Grid Folder -->
+            
             <div class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-10">
                 <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition transform text-center cursor-pointer border-t-4 border-shiawase group" data-aos="zoom-in">
                     <i class="fas fa-folder text-6xl text-yellow-400 group-hover:text-shiawase transition mb-4"></i>
@@ -286,6 +298,7 @@
         </div>
     </section>
 
+    <!-- BERITA SECTION -->
     <section id="berita" class="py-16 bg-white relative z-20">
         <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-shiawase-dark z-10 pointer-events-none"></div>
         <div class="container mx-auto px-4" data-aos="fade-up">
@@ -294,7 +307,6 @@
                 <p class="mt-4 text-gray-600">Geser ke kanan untuk melihat berita terbaru.</p>
             </div>
             
-            <!-- Tempat Geser (Slider) -->
             <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 pt-4 hide-scroll cursor-grab relative z-20">
                 <div class="snap-center shrink-0 w-80 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition overflow-hidden border-b-4 border-shiawase">
                     <img src="https://placehold.co/400x250/E62129/fff?text=Berita+1" class="w-full h-48 object-cover">
@@ -352,20 +364,57 @@
                 </ul>
             </div>
         </div>
-        <div class="border-t border-gray-600 pt-6 text-center text-gray-400 text-sm">
+        <!-- PERUBAHAN: Menambahkan pb-12 agar teks copyright tidak tertutup oleh baris info yang menempel -->
+        <div class="border-t border-gray-600 pt-6 pb-12 text-center text-gray-400 text-sm">
             <p>&copy; 2026 LPKS SHIAWASE. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- TAMBAHAN: STICKY BOTTOM CONTACT BAR -->
+    <!-- PERUBAHAN: Menipiskan baris (py-1), mengecilkan teks (text-[10px] md:text-xs), dan mengecilkan ikon -->
+    <div class="fixed bottom-0 left-0 w-full bg-shiawase-dark text-white z-[60] shadow-[0_-4px_10px_rgba(0,0,0,0.3)] border-t border-blue-800">
+        <div class="container mx-auto px-2">
+            <!-- Flex & overflow-x-auto agar di HP tetap 1 baris tipis dan bisa digeser (swipe) -->
+            <div class="flex items-center justify-start md:justify-center gap-4 md:gap-6 py-1 overflow-x-auto hide-scroll text-[10px] md:text-xs whitespace-nowrap">
+                <a href="https://wa.me/6283154924576" target="_blank" class="flex items-center hover:text-shiawase-light transition">
+                    <i class="fab fa-whatsapp text-green-400 mr-1.5 text-sm md:text-base"></i> 083154924576
+                </a>
+                <a href="#" class="flex items-center hover:text-shiawase-light transition">
+                    <i class="fab fa-instagram text-pink-400 mr-1.5 text-sm md:text-base"></i> lpk.shiawase
+                </a>
+                <a href="#" class="flex items-center hover:text-shiawase-light transition">
+                    <i class="fab fa-facebook text-blue-400 mr-1.5 text-sm md:text-base"></i> Lpk Shiawase
+                </a>
+                <a href="#" class="flex items-center hover:text-shiawase-light transition">
+                    <i class="fas fa-globe text-gray-300 mr-1.5 text-sm md:text-base"></i> shiawase.com
+                </a>
+                <a href="mailto:lpkshiawase88@gmail.com" class="flex items-center hover:text-shiawase-light transition">
+                    <i class="fas fa-envelope text-red-400 mr-1.5 text-sm md:text-base"></i> lpkshiawase88@gmail.com
+                </a>
+            </div>
+        </div>
+    </div>
+
     <!-- INTERAKSI / MESIN -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Mengaktifkan Menu HP
         const btn = document.getElementById('mobileMenuBtn');
         const menu = document.getElementById('mobileMenu');
-        btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
-        AOS.init({ once: false, offset: 100 });
 
-        // MESIN PEMUTAR MUSIK OTOMATIS
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Mengaktifkan Animasi Scroll (AOS)
+        AOS.init({
+            once: false, 
+            offset: 100, 
+        });
+
+        // ==========================================
+        // MESIN PEMUTAR MUSIK OTOMATIS (BGM)
+        // ==========================================
         const lagu1 = "Shiawase no Kakehashi (Jembatan Kebahagiaan).mp3";
         const lagu2 = "Shiawase no Kakehashi.mp3";
         const pemutarMusik = new Audio();
@@ -374,21 +423,26 @@
         function jalankanSkenarioMusik() {
             if (musikSudahMulai) return;
             musikSudahMulai = true;
+
             setTimeout(() => {
-                pemutarMusik.src = lagu2;
-                pemutarMusik.play().catch(e => console.log("Menunggu pengunjung interaksi..."));
+                pemutarMusik.src = lagu2; 
+                pemutarMusik.play().catch(e => console.log("Menunggu pengunjung nge-klik web..."));
+
                 pemutarMusik.onended = () => {
                     setTimeout(() => {
-                        pemutarMusik.src = lagu1;
-                        pemutarMusik.play().catch(e => console.log("Menunggu pengunjung interaksi..."));
+                        pemutarMusik.src = lagu1; 
+                        pemutarMusik.play().catch(e => console.log("Menunggu pengunjung nge-klik web..."));
                     }, 10000); 
                 };
             }, 10000); 
         }
 
         window.addEventListener('load', jalankanSkenarioMusik);
+
         document.body.addEventListener('click', () => {
-            if (pemutarMusik.paused && pemutarMusik.src) { pemutarMusik.play(); }
+            if (pemutarMusik.paused && pemutarMusik.src) {
+                pemutarMusik.play();
+            }
         });
     </script>
 </body>
